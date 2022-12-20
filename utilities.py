@@ -127,6 +127,9 @@ def periode(xy0, epsilon, n0=200, err=10e-3, N=1000, tmax=20):
     
     fig, ax = plt.subplots()
     ax.plot(t2, H)
+    ax.set_xlabel("t")
+    ax.set_ylabel("x(t)")
+    ax.axhline(0,color="black")
     
     maxi = H[n0]
     posMaxi = -1
