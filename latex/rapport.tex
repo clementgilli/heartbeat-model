@@ -110,6 +110,7 @@ Ce n'est pas satisfaisant. On est obligé de rajouter cette perturbation pour co
 
 \section{Étude qualitative de l’équation de Van der Pol}
 
+\[\]
 
 Dans cette section, on décrit brievement quelques propriétés du système de Van der Pol, avec $\varepsilon = 1$ fixé :
 
@@ -217,8 +218,27 @@ $\varepsilon$ = 100).
     \includegraphics[scale=0.4]{../images/epsilon_choice.png}
     \captionsetup{justification=centering,margin=2cm}
     \caption{Diagramme des phases et intensité du courant en fonction du temps avec $\varepsilon = 100$}
-    \end{figure}
+\end{figure}
 
 \section{Période et amplitude asymptotique}
+
+\[\]
+
+On veut maintenant estimer la période fondamentale $T$ de la solution. Pour cela, on remarque qu'analytiquement c'est assez complexe, c'est pourquoi on décide de l'estimer numériquement.
+L'algorithme est assez simple en pratique: On cherche le point où la valeur de l'ordonnée est maximale (une fois que la solution s'est stabilisée) puis on cherche le prochain point où l'ordonnée est maximale.
+En faisant la différence des abscisses, on obtient une approximation de la période.
+En faisant tendre $\varepsilon$ vers $+\infty $, le résultat analtyique (admis ici) nous dit que $\lim_{\varepsilon \to \infty} T = 3 - 2\ln 2 \simeq 1.61$.
+Avec notre algorithme assez naïf, on arrive à trouver $T \simeq 1.66$ pour $\varepsilon$ assez grand.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{../images/periode.png}
+    \captionsetup{justification=centering,margin=2cm}
+    \caption{Intensité du courant en fonction du temps avec $\varepsilon = 100$. La période estimée est $T \simeq 1.9$}
+\end{figure}
+
+\section{Extensions}
+
+\[\]
 
 \end{document}

@@ -20,7 +20,13 @@ def F(X, t, epsilon):
 
 
 def trace_courbes(x0,y0,epsilon,tmax=20):
-        
+    """
+    trace le diagramme des phases et l'intensite du courant
+    param:
+        x0,y0 : les conditions initiales
+        epsilon : réel > 0
+        tmax : le nb de periode max
+    """
     T, N = tmax, 1000
     
     t = np.linspace(-T,T,N+1)
@@ -68,7 +74,14 @@ def trace_courbes(x0,y0,epsilon,tmax=20):
     
     
 def trace_courbes2(xy0,epsilon,tmax=20):
-        
+    """
+    pareil que pour trace courbe mais on peut donner un tableau de conditions initiales
+    toutes representees sur le meme graphe
+    param:
+        xy0 : array des conditions initiales
+        epsilon : réel > 0
+        tmax : le nb de periode max
+    """
     T, N = tmax, 1000
     
     t = np.linspace(-T,T,N+1)
@@ -119,7 +132,15 @@ def trace_courbes2(xy0,epsilon,tmax=20):
         
         
 def periode(xy0, epsilon, n0=200, err=10e-3, N=1000, tmax=20):
-    
+    """
+    permet d'estimer la periode
+    param:
+        xy0 : array des conditions initiales
+        epsilon : réel > 0
+        n0 : shift de depart
+        err : erreur max
+        N,tmax : conditions d'arret
+    """
     t2 = np.linspace(0,tmax,N+1) 
     x0,y0 = xy0[0], xy0[1]
     X = odeint(F,[x0,y0],t2,args=(epsilon,))
@@ -127,6 +148,7 @@ def periode(xy0, epsilon, n0=200, err=10e-3, N=1000, tmax=20):
     
     fig, ax = plt.subplots()
     ax.plot(t2, H)
+    ax.scatter(0,y0)
     ax.set_xlabel("t")
     ax.set_ylabel("x(t)")
     ax.axhline(0,color="black")
@@ -149,7 +171,8 @@ def periode(xy0, epsilon, n0=200, err=10e-3, N=1000, tmax=20):
             ax.scatter(tmax*posMaxi/N, maxi,color="red")
             ax.scatter(tmax*(posMaxi + c)/N, maxi,color="red")
             ax.plot([tmax*posMaxi/N, tmax*(posMaxi + c)/N], [maxi, maxi],color="red")
-            return c*tmax/N
+            ax.set_title(f"Estimation de la période : {c*tmax/N}")
+            return
         
         else:
             c += 1
