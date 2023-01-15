@@ -4,7 +4,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{caption}
-
+\usepackage{float}
 \usepackage{amsthm}
 
 \newtheorem{preuve}{Preuve}
@@ -25,19 +25,17 @@
 
 On étudie les phénomènes électriques accompagnant le battement cardiaque, ou
 plus précisément, le comportement électrique d’une cellule cardiaque, en essayant de mettre en
-évidence des propriétés mathématiques significatives. On donne une définition générale des
-phénomènes oscillatoires avec relaxation. On propose un modèle analogique de la contraction
+évidence des propriétés mathématiques significatives. On propose un modèle analogique de la contraction
 d’une cellule du cœur comme exemple d’un phénomène oscillatoire avec relaxation. Ce
-modèle conduit à l’équation de Van der Pol, dont on rappelle des propriétés qualitatives. On
-insiste sur le problème de la validation du modèle en soulignant les relations avec les résultats
-de Van der Pol et Van der Mark au début du vingtième siècle.
+modèle conduit à l’équation de Van der Pol, dont on étudie des propriétés qualitatives analytiquement ou bien numériquement.
+On essaye d'obtenir un modèle le plus fidèle possible aux observations.
 
 \section{Modèle du battement du cœur et oscillations avec relaxation}
 
 \[\]
 
 On veut modéliser les battements du cœur. Depuis la fin du dix-neuvième siècle, on sait que l’activité cardiaque est associée à la production d’une quantité de courant électrique.
-D'après les observations physiques, on sait que le phénomène de battement de coeurs fait partie des systèmes naturels auto-excités, dont on remarque des oscillations avec relaxation. Un exemple de système auto-excité est donné par les circuits éléctriques  RLC. On décrit rapidement ce modèle, puis on montrera qu'un habile choix de $\varepsilon$ peux alors ajouter des oscillations avec relaxation à notre système.
+D'après les observations physiques, on sait que le phénomène de battement de coeurs fait partie des systèmes naturels auto-excités, c'est-à-dire qu'il sort lui même de son état de repos, dont on remarque des oscillations avec relaxation. Un exemple de système auto-excité est donné par les circuits éléctriques  RLC. On décrit rapidement ce modèle, puis on montrera qu'un habile choix de $\varepsilon$ peux alors ajouter des oscillations avec relaxation à notre système.
 
 
 \begin{equation}
@@ -100,7 +98,7 @@ avec $\lambda ,\mu \in \mathbb{R}$
 
 On remarque notamment que pour tout $t$,  $x(t)^2 + y(t)^2 = 1$. La solution a une allure de cercle : on peut tracer $y(t)$ en fonction de $x(t)$ (on pose $\lambda = \mu = 1$)  $(Figure$ 1$)$ 
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{../images/plot_circ.png}
 \caption{Graphe de $y(t)$ en fonction de $x(t)$}
@@ -117,7 +115,7 @@ Dans cette section, on décrit brievement quelques propriétés du système de V
 \begin{equation}
     \left\{
     \begin{aligned}
-        x'(t) &= \varepsilon (y(t) - \frac{1}{3} x(t)^3 + x(t)) \\   
+        x'(t) &= y(t) - \frac{1}{3} x(t)^3 + x(t) \\   
         y'(t) &= -x(t)\\
    \end{aligned}
    \right.
@@ -139,7 +137,7 @@ Dans cette section, on décrit brievement quelques propriétés du système de V
 
 Le système est en équilibre si et seulement si $x$ et $y$ sont constantes, $i.e.$ 
 si et seulement si $x'$ et $y'$ sont nulles, $i.e.$ 
-si et seulement si $ \forall t,$ $x(t)=0$ et $y(t)=0$. Donc le seul équilibre de (3) est $(0,0)$.
+si et seulement si $ \forall t,$ $x(t)=0$ et $y(t)=0$. Donc le seul équilibre de (3) est $(0,0)$ (En effet, c'est l'unique solution constante d'après le théorème de Cauchy-Lipschitz).
 \\À présent, on étudie le comportement du système (3) linéarisé pour voir le comportement des points d'équilibre, $i.e. (0,0)$ ici :
 
 \begin{equation*}
@@ -183,12 +181,14 @@ Le champs de vecteur permet de bien visualiser le sens de rotation. $\square$
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{../images/plot_solh.png}
-\caption{Graphe de $y(t)$ en fonction de $x(t)$}
+\caption{Diagramme des phases}
 \end{figure}
 
 \end{preuve}
 
 On admettra la preuve des autres propriétés. On peut cependant utiliser le schéma de Runge Kutta pour montrer les résultats attendus $(Figure$ 3$)$.
+On en profite pour remarquer la présence d'une unique solution périodique $\gamma$ non sinusoïdale.
+Pour toutes données initiales autres que la source $(0,0)$, l'allure des solutions se rapprochent de $\gamma$.
 
 \begin{figure}[!h]
 \centering
@@ -203,14 +203,12 @@ On admettra la preuve des autres propriétés. On peut cependant utiliser le sch
 
 On essaye de choisir $\varepsilon$ pour obtenir un comportement oscillatoire avec relaxation, avec pour
 but principal d’obtenir des oscillations sensiblement non sinusoïdales. Pour cela, on remarque
-que si $0 <\varepsilon < 1$, on obtient numériquement des courbes presque sinusoïdales. Si
-$\varepsilon \leq 0$, on peut
-montrer que le comportement qualitatif des solutions n’est pas celui recherché.
+que si $0 <\varepsilon < 1$, on obtient numériquement des courbes presque sinusoïdales. On n'étudiera pas le cas
+$\varepsilon \leq 0$.
 On est donc amené à considérer des valeurs positives et élevées du paramètre $\varepsilon$. 
 Par exemple, pour $\varepsilon = 100$, on a le comportement décrit par la $Figure$ 4.
 Dans le diagramme des phases de la $Figure$ 4, on peut aussi remarquer que quand $\varepsilon$ est grand,
-certaines parties de la trajectoires et de la courbe $y = f (x)$ sont très proches l’une de l’autre.
-Cela est cohérent avec l’équation (1). On va donc choisir $\varepsilon$ positif et ”grand”, (dans les exemples, on gardera
+certaines parties de la trajectoires et de la courbe $y = f (x)$ sont très proches l’une de l’autre (avec un léger déphasage). On va donc choisir $\varepsilon$ positif et "grand" (dans les exemples, on gardera
 $\varepsilon$ = 100).
 
 \begin{figure}[!h]
@@ -226,7 +224,7 @@ $\varepsilon$ = 100).
 
 On veut maintenant estimer la période fondamentale $T$ de la solution. Pour cela, on remarque qu'analytiquement c'est assez complexe, c'est pourquoi on décide de l'estimer numériquement.
 L'algorithme est assez simple en pratique: On cherche le point où la valeur de l'ordonnée est maximale (une fois que la solution s'est stabilisée) puis on cherche le prochain point où l'ordonnée est maximale.
-En faisant la différence des abscisses, on obtient une approximation de la période.
+En faisant la différence des abscisses, on obtient une approximation de la période ($Figure$ 5).
 En faisant tendre $\varepsilon$ vers $+\infty $, le résultat analtyique (admis ici) nous dit que $\lim_{\varepsilon \to \infty} T = 3 - 2\ln 2 \simeq 1.61$.
 Avec notre algorithme assez naïf, on arrive à trouver $T \simeq 1.66$ pour $\varepsilon$ assez grand.
 
@@ -237,8 +235,41 @@ Avec notre algorithme assez naïf, on arrive à trouver $T \simeq 1.66$ pour $\v
     \caption{Intensité du courant en fonction du temps avec $\varepsilon = 100$. La période estimée est $T \simeq 1.9$}
 \end{figure}
 
-\section{Extensions}
+\section{Un autre modèle : $f$ linéaire}
 
 \[\]
+
+Lorsqu'on choisit f linéaire dans le système $(1)$, la solution n'est pas périodique.
+En effet, on voit qu'elle s'écarte très vite de la source ($Figure$ 6).
+Pour tout autre degré que 1 et 3 pour le $f$, les observations numériques sont chaotiques, ce qui laisse supposer que le modèle n'est pas viable. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{../images/diff_f.png}
+    \captionsetup{justification=centering,margin=2cm}
+    \caption{Diagramme des phases et intensité du courant en fonction du temps avec $f(x) = x$ }
+\end{figure}
+
+\section{Conclusion}
+
+\[\]
+
+D'après les résultats démontrés, ainsi que ceux observés numériquement, on obtient, pour 
+\(f(x) = \frac{1}{3} x^3 - x\), une solution qui tend rapidement vers une solution périodique.
+
+\smallskip
+
+La donnée initiale correspond a une impulsion envoyé au système cardique (similaire à un électrochoc).
+
+\smallskip
+
+Pour que la solution limite soit la plus proche possible des observations, on joue sur le paramètre $\varepsilon$.
+On observe qu'il faut qu'il soit assez important.
+
+\smallskip
+
+Si $f$ est polynomiale, on remarque que seul un polynome de degré 3 semble convenir.
+Pour affiner le système, il faudrait alors considérer une fonction $f$ "assez proche" d'une fonction 
+polynomiale de degré 3.
 
 \end{document}
